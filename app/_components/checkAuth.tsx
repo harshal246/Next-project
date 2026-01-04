@@ -4,7 +4,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const PUBLIC_ROUTES = ["/Login", "/Signup"];
-const HOME_ROUTE = "/Home"; 
+const HOME_ROUTE = "/"; 
 
 export default function AuthGuard({
   children,

@@ -17,7 +17,7 @@ export default function Login() {
       reject("Error arrived");
     })
       .then((d) => {
-        router.push("/Home");
+        router.push("/");
       })
       .catch((err) => {
         toast.error("Error has arrived");
@@ -32,11 +32,10 @@ export default function Login() {
     }));
   }
   return (
-    <form onSubmit={HandleSubmit}>
-      <div className="h-screen w-screen flex m-auto">
-        <div className="w-[400px] h-[500px] flex-col m-auto flex justify-around items-center rounded-[20px] shadow-[-1px_7px_34px_7px_rgba(0,_0,_0,_0.1)]">
-          <span className="m-10 text-2xl">Login</span>
-          <div className="w-[90%] flex flex-col m-10">
+    <form onSubmit={HandleSubmit} className="w-full h-screen flex justify-center items-center">
+        <div className="w-[400px] h-[450px] flex-col flex justify-around items-center rounded-[20px] shadow-[-1px_7px_34px_7px_rgba(0,_0,_0,_0.1)]">
+          <span className="m-5 text-2xl">Login</span>
+          <div className="w-[90%] flex flex-col m-5">
             <label htmlFor="email" className="text-[18px]">
               Enter email
             </label>
@@ -49,7 +48,7 @@ export default function Login() {
               required
             />
           </div>
-          <div className="w-[90%] flex flex-col m-10">
+          <div className="w-[90%] flex flex-col m-5">
             <label htmlFor="email" className="text-[18px]">
               Enter password
             </label>
@@ -69,7 +68,6 @@ export default function Login() {
             Login
           </button>
         </div>
-      </div>
     </form>
   );
 }

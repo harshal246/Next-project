@@ -67,9 +67,9 @@ export function SIdebar() {
             }}
           >
             <MenuItem
-              active={pathname === "/Home"}
+              active={pathname === "/"}
               onClick={() => {
-                router.push("/Home")
+                router.push("/")
                 setClosed(true)
                 setMobileOpen(false);
               }}

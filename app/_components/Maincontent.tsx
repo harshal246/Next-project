@@ -1,21 +1,23 @@
 "use client"
 import { Drop } from "./Dropdown";
-import { Search } from "./search";
+import { SearchComponent } from "./search";
 import { OpenModal } from "./Modal";
 import { ItemRendering } from "./itemRendering";
 import { productszu } from "../_store/data";
+import { Overview } from "./Overview";
 export function Main() {
   const reset = productszu((state) => state.setReset);
   return (
-    <div className="w-[90%]">
-      <div className="mt-8  ml-5 flex items-center justify-around flex-wrap w-[95%] h-auto overflow-y-scroll">
-        <span className="text-3xl font-bold m-3">Inventory</span>
-        <div className="flex flex-wrap">
+    <div className="w-[98%]">
+      <div className="text-3xl font-bold p-[30px]">Inventory</div>
+      <Overview/>
+      <div className="flex items-center flex-wrap justify-center w-[100%] m-auto h-auto p-[10px] pt-[20px]">
+        <div className="flex flex-wrap justify-between w-[100%] gap-[10px] p-[20px] bg-white border-2 border-violet-200 rounded-2xl">
+          <SearchComponent/>
           <Drop c={"Brand"}/>
           <Drop c={"Category"}/>
-          <Search/>
           <button
-            className="bg-violet-400 h-[40px] w-[100px] cursor-pointer  m-2 rounded-md"
+            className="bg-violet-400  w-[100px] h-[40px] cursor-pointer mt-7 rounded-md text-white"
             onClick={() => {
               reset();
             }}
@@ -25,8 +27,8 @@ export function Main() {
           <OpenModal />
         </div>
       </div>
-      <div className="w-[98%] h-[430px] m-auto border-[1px] border-green-100 mt-5">
-        <div className="w-full h-[30px] flex">
+      <div className="w-[99%]  m-auto p-5 overflow-hidden  bg-white border-2 border-violet-200 rounded-2xl">
+        <div className="w-full h-[30px] flex border-b-2 border-violet-200">
           <div className="flex-1">Image</div>
           <div className="flex-1">Name</div>
           <div className="flex-1">Category</div>

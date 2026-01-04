@@ -6,7 +6,7 @@ import { IoClose } from "react-icons/io5";
 import toast from "react-hot-toast";
 import { RiArrowDropUpLine } from "react-icons/ri";
 import { Drop } from "./Dropdown";
-import { Search } from "./search";
+import { SearchComponent} from "./search";
 import { OpenModal } from "./Modal";
 import { Products, productszu } from "../_store/data";
 interface Data {
@@ -25,7 +25,7 @@ export function ItemRendering() {
   const [openBar, setClosebar] = useState<number | undefined>();
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>, itmid: any) => {
     const { name, value } = e.target;
-    setchangedData((prev) => ({ ...prev, [name]: value, ["id"]: itmid }));
+    setchangedData((prev) => ({ ...prev, [name]: value, ["id"]: itmid}));
   };
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -47,7 +47,7 @@ export function ItemRendering() {
     toast.success("The data has been changed");
   }
   return (
-    <div className="w-full  h-[400px] flex flex-col overflow-y-scroll">
+    <div className="w-full flex flex-col max-h-screen overflow-y-scroll overflow-x-hidden">
       {/* product rendering staarting point */}
       {d.length > 0 ? (
         d.map((itm: Products, indx: number) => {
@@ -168,19 +168,25 @@ export function ItemRendering() {
                         handleChange(e, itm.id);
                       }}
                     ></input>
-                    <label htmlFor="name">Stock(Unchangable)</label>
+                    <label htmlFor="name">Stock</label>
                     <input
                       className="w-full h-8 rounded-md mb-5 mt-1 p-2 border-[1px] border-black flex-1"
-                      value={itm.stock}
                       name="stock"
-                      readOnly
+                      type="number"
+                      defaultValue={itm.stock}
+                      onChange={(e) => {
+                        handleChange(e, itm.id);
+                      }}
                     ></input>
                     <label htmlFor="name">ReservedStock:</label>
                     <input
+                    type="number"
                       className="w-full h-8 rounded-md mb-5 mt-1 p-2 border-[1px] border-black flex-1"
-                      value={itm.reservedStock}
                       name="reservedStock"
-                      readOnly
+                      defaultValue={itm.reservedStock}
+                      onChange={(e) => {
+                        handleChange(e, itm.id);
+                      }}
                     ></input>
                     {!Object.values(data).every((value) => value === "") && (
                       <button
@@ -198,7 +204,7 @@ export function ItemRendering() {
         })
       ) : (
         <div className="m-auto text-[22px] text-violet-400">
-          !!!!There is no such data inside inventory based on your input
+          !No Data
         </div>
       )}
     </div>

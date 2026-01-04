@@ -20,7 +20,7 @@ export default function signup(){
           reject("Error arrived");
         })
           .then(() => {
-            router.push("/Home");
+            router.push("/");
           })
           .catch(() => {
             toast.error("Error has arrived");

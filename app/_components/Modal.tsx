@@ -34,7 +34,7 @@ export function OpenModal() {
   return (
     <>
       <button
-        className="text-1xl font-bold bg-violet-400 w-[130px] h-[40px] rounded-md cursor-pointer  m-2"
+        className="text-1xl  bg-violet-400 w-[130px] h-[40px] m text-white rounded-md cursor-pointer mt-7"
         onClick={() => {
           setIsOpen(true);
         }}
@@ -51,7 +51,7 @@ export function OpenModal() {
             border: "none",
             padding: "10px",
             display: "flex",
-            width: "500px",
+            width: "60%",
             height: "500px",
             flexDirection: "column",
           },
@@ -86,6 +86,7 @@ export function OpenModal() {
             />
             <div className="text-[20px] pl-6 pt-5">Add Brand</div>
             <input
+            type="text"
               name="name"
               placeholder="Add Name"
               onChange={handleChange}
@@ -94,6 +95,7 @@ export function OpenModal() {
             />
             <div className="text-[20px] pl-6 pt-5">Add Price</div>
             <input
+            type="number"
               name="price"
               onChange={handleChange}
               placeholder="Add Price"
@@ -111,7 +113,7 @@ export function OpenModal() {
             />
             <div className="text-[20px] pl-6 pt-5">Add Stock</div>
             <input
-              type="text"
+              type="number"
               name="stock"
               placeholder="Add Stock"
               onChange={handleChange}
@@ -120,7 +122,7 @@ export function OpenModal() {
             />
             <div className="text-[20px] pl-6 pt-5">Add Reserved Stock</div>
             <input
-              type="text"
+              type="number"
               name="reservedStock"
               placeholder="Add reservedStock"
               onChange={handleChange}
