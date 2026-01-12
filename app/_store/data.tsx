@@ -11,6 +11,13 @@ export interface Products {
   stock?: number;
   reservedStock?: number;
   image?: string;
+  sold?:number;
+  trend?:string;
+  priceRange?:string
+  isLowStock?:boolean
+  available?:number
+  products?:number
+
 }
 
 interface ReturnDataType{
@@ -35,7 +42,8 @@ interface ProductStore {
   setReset: () => void;
   deleteProduct: (id: string) => void;
   updateProductFields: (id: string, fields: Partial<Products>) => void;
-  getProductsData:()=> ReturnDataType
+  getProductsData:()=> ReturnDataType,
+  
 }
 const products: Products[] = [
   {
@@ -46,10 +54,15 @@ const products: Products[] = [
     price: 1499,
     brand: "LogiTech",
     country: "China",
-    stock: 120,
-    reservedStock: 10,
-    image:
-      "https://imgs.search.brave.com/X5nlFGDVpQ2UNk4RUXLCnhMFrAsE085LZikrIyddvak/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5nZXR0eWltYWdl/cy5jb20vaWQvMTMx/NzM0ODAwMy9waG90/by93aGl0ZS1zcG9y/dHMtc2hvZXMtb3Zl/ci1ibHVlLWJhY2tn/cm91bmQtc3BvcnRz/LWFuZC1jYXN1YWwt/Y2xvdGhpbmctc3R5/bGUtY29uY2VwdC1z/dW1tZXItb3IuanBn/P3M9NjEyeDYxMiZ3/PTAmaz0yMCZjPTFz/eHc3U1R2SG1oYWhO/RlpjT0hIRGd2V29W/djV4cHNySVd4S1JB/eGxDRHM9",
+    stock: 5,
+    reservedStock: 118,
+    image: "https://imgs.search.brave.com/X5nlFGDVpQ2UNk4RUXLCnhMFrAsE085LZikrIyddvak/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5nZXR0eWltYWdl/cy5jb20vaWQvMTMx/NzM0ODAwMy9waG90/by93aGl0ZS1zcG9y/dHMtc2hvZXMtb3Zl/ci1ibHVlLWJhY2tn/cm91bmQtc3BvcnRz/LWFuZC1jYXN1YWwt/Y2xvdGhpbmctc3R5/bGUtY29uY2VwdC1z/dW1tZXItb3IuanBn/P3M9NjEyeDYxMiZ3/PTAmaz0yMCZjPTFz/eHc3U1R2SG1oYWhO/RlpjT0hIRGd2V29W/djV4cHNySVd4S1JB/eGxDRHM9",
+    sold: 2,
+    trend: "stable",
+    priceRange: "$1000+",
+    isLowStock: false,
+    available:24,
+    products:43,
   },
   {
     id: "p2",
@@ -61,8 +74,13 @@ const products: Products[] = [
     country: "Vietnam",
     stock: 250,
     reservedStock: 15,
-    image:
-      "https://imgs.search.brave.com/Yh98Sdd8_1TwsTOZwkh9KoLlEEqmNgXkKCjnKddoPeo/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9sYWNl/b24uaW4vY2RuL3No/b3AvZmlsZXMvUGhv/dG9yb29tXzIwMjUw/MTIxXzEzMDE0OC5q/cGc_dj0xNzM3NDQ2/MTIzJndpZHRoPTEy/MDA",
+    image: "https://imgs.search.brave.com/Yh98Sdd8_1TwsTOZwkh9KoLlEEqmNgXkKCjnKddoPeo/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9sYWNl/b24uaW4vY2RuL3No/b3AvZmlsZXMvUGhv/dG9yb29tXzIwMjUw/MTIxXzEzMDE0OC5q/cGc_dj0xNzM3NDQ2/MTIzJndpZHRoPTEy/MDA",
+    sold: 280,
+    trend: "up",
+    priceRange: "$1000+",
+    isLowStock: false,
+    available:42,
+    products:34,
   },
   {
     id: "p3",
@@ -72,10 +90,15 @@ const products: Products[] = [
     price: 799,
     brand: "Cello",
     country: "India",
-    stock: 350,
+    stock: 8,
     reservedStock: 20,
-    image:
-      "https://imgs.search.brave.com/r4vwRgBjIZxMHuVaQnM1NhsIH1uXVfIKBL0t1qin2fI/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pLnBp/bmltZy5jb20vb3Jp/Z2luYWxzLzgwLzk3/LzhhLzgwOTc4YTEx/M2NiOTAyN2EyNDU2/YWQ3MDQwODgxOTU0/LmpwZw",
+    image: "https://imgs.search.brave.com/r4vwRgBjIZxMHuVaQnM1NhsIH1uXVfIKBL0t1qin2fI/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pLnBp/bmltZy5jb20vb3Jp/Z2luYWxzLzgwLzk3/LzhhLzgwOTc4YTEx/M2NiOTAyN2EyNDU2/YWQ3MDQwODgxOTU0/LmpwZw",
+    sold: 450,
+    trend: "up",
+    priceRange: "$500-1000",
+    isLowStock: false,
+    available:45,
+    products:75,
   },
   {
     id: "p4",
@@ -87,8 +110,13 @@ const products: Products[] = [
     country: "Malaysia",
     stock: 180,
     reservedStock: 12,
-    image:
-      "https://imgs.search.brave.com/onzM7M_rW0DJvbrKLScyZBeYTX7HhUay4bTfLviXr5c/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jZG4u/cGl4YWJheS5jb20v/cGhvdG8vMjAyNC8w/NC8xNy8xOC80MC9h/aS1nZW5lcmF0ZWQt/ODcwMjcyNl82NDAu/anBn",
+    image: "https://imgs.search.brave.com/onzM7M_rW0DJvbrKLScyZBeYTX7HhUay4bTfLviXr5c/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jZG4u/cGl4YWJheS5jb20v/cGhvdG8vMjAyNC8w/NC8xNy8xOC80MC9h/aS1nZW5lcmF0ZWQt/ODcwMjcyNl82NDAu/anBn",
+    sold: 185,
+    trend: "down",
+    priceRange: "$1000+",
+    isLowStock: false,
+    available:64,
+    products:63,
   },
   {
     id: "p5",
@@ -100,8 +128,13 @@ const products: Products[] = [
     country: "India",
     stock: 90,
     reservedStock: 8,
-    image:
-      "https://imgs.search.brave.com/UhRw5TztQ7rzjTnWZtaLpSp5dPr-EQ_NO5sCuB22Wl8/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jZG4u/cGl4YWJheS5jb20v/cGhvdG8vMjAyMy8w/NS8wNi8wMS8zMy90/LXNoaXJ0LTc5NzMz/OTRfNjQwLmpwZw",
+    image: "https://imgs.search.brave.com/UhRw5TztQ7rzjTnWZtaLpSp5dPr-EQ_NO5sCuB22Wl8/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jZG4u/cGl4YWJheS5jb20v/cGhvdG8vMjAyMy8w/NS8wNi8wMS8zMy90/LXNoaXJ0LTc5NzMz/OTRfNjQwLmpwZw",
+    sold: 95,
+    trend: "stable",
+    priceRange: "$1000+",
+    isLowStock: false,
+    available:14,
+    products:73,
   },
   {
     id: "p6",
@@ -113,8 +146,13 @@ const products: Products[] = [
     country: "Japan",
     stock: 300,
     reservedStock: 18,
-    image:
-      "https://imgs.search.brave.com/vK49HrBk5TrgRecQzv0DTjlWM2GziipNPZ7DlKuEHzY/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jZG4ucGl4YWJheS5jb20vcGhvdG8vMjAyMy8wNS8wNi8wMS8zNC90LXNoaXJ0LTc5NzM0MDRfNjQwLmpwZw",
+    image: "https://imgs.search.brave.com/vK49HrBk5TrgRecQzv0DTjlWM2GziipNPZ7DlKuEHzY/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jZG4ucGl4YWJheS5jb20vcGhvdG8vMjAyMy8wNS8wNi8wMS8zNC90LXNoaXJ0LTc5NzM0MDRfNjQwLmpwZw",
+    sold: 325,
+    trend: "up",
+    priceRange: "$1000+",
+    isLowStock: false,
+    available:84,
+    products:38,
   },
   {
     id: "p7",
@@ -126,8 +164,13 @@ const products: Products[] = [
     country: "China",
     stock: 220,
     reservedStock: 14,
-    image:
-      "https://imgs.search.brave.com/vK49HrBk5TrgRecQzv0DTjlWM2GziipNPZ7DlKuEHzY/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jZG4u/cGl4YWJheS5jb20v/cGhvdG8vMjAyMy8w/NS8wNi8wMS8zNC90/LXNoaXJ0LTc5NzM0/MDRfNjQwLmpwZw",
+    image: "https://imgs.search.brave.com/vK49HrBk5TrgRecQzv0DTjlWM2GziipNPZ7DlKuEHzY/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jZG4u/cGl4YWJheS5jb20v/cGhvdG8vMjAyMy8w/NS8wNi8wMS8zNC90/LXNoaXJ0LTc5NzM0/MDRfNjQwLmpwZw",
+    sold: 140,
+    trend: "up",
+    priceRange: "$1000+",
+    isLowStock: false,
+    available:43,
+    products:88,
   },
   {
     id: "p8",
@@ -139,21 +182,31 @@ const products: Products[] = [
     country: "Bangladesh",
     stock: 500,
     reservedStock: 30,
-    image:
-      "https://imgs.search.brave.com/EOGHZkxe1SBH-zS_Ie_oPKvCGtaTB9J8Q4kom5NPkmw/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/dHJ1ZXNpbHZlci5j/by5pbi9jZG4vc2hv/cC9maWxlcy9DVUY4/ME42Q1MxNklORkxf/NjAweC5qcGc_dj0x/NzYwMDcxODU5",
+    image: "https://imgs.search.brave.com/EOGHZkxe1SBH-zS_Ie_oPKvCGtaTB9J8Q4kom5NPkmw/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/dHJ1ZXNpbHZlci5j/by5pbi9jZG4vc2hv/cC9maWxlcy9DVUY4/ME42Q1MxNklORkxf/NjAweC5qcGc_dj0x/NzYwMDcxODU5",
+    sold: 890,
+    trend: "up",
+    priceRange: "$100-500",
+    isLowStock: false,
+    available:78,
+    products:24,
   },
   {
     id: "p9",
     name: "Ceramic Coffee Mug",
     mainCategory: "Home",
     categories: ["Home", "Kitchen", "Drinkware"],
-    price: 299,
+    price: 99,
     brand: "ClayWorks",
     country: "India",
     stock: 270,
     reservedStock: 22,
-    image:
-      "https://imgs.search.brave.com/NyLWMIfQk14c7WL8kulfTSsHUDp-RiOyby6_Vt54Ybk/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/cm9zZWdvbGRhbmRi/bGFjay5jb20vY2Ru/L3Nob3AvYXJ0aWNs/ZXMvMTczMjY3MzIz/Nl9zaWx2ZXItbWVu/X3MtbmVja2xhY2Ut/c3RhY2tfYTQ2NTBl/NmYtZmQ1YS00NTBm/LWJlNjItOGFkOTEz/ZjQwMDg0XzEwMjR4/MTAyNC5qcGc_dj0x/NzY0MzM4NDcz",
+    image: "https://imgs.search.brave.com/NyLWMIfQk14c7WL8kulfTSsHUDp-RiOyby6_Vt54Ybk/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/cm9zZWdvbGRhbmRi/bGFjay5jb20vY2Ru/L3Nob3AvYXJ0aWNs/ZXMvMTczMjY3MzIz/Nl9zaWx2ZXItbWVu/X3MtbmVja2xhY2Ut/c3RhY2tfYTQ2NTBl/NmYtZmQ1YS00NTBm/LWJlNjItOGFkOTEz/ZjQwMDg0XzEwMjR4/MTAyNC5qcGc_dj0x/NzY0MzM4NDcz",
+    sold: 650,
+    trend: "stable",
+    priceRange: "$0-100",
+    isLowStock: false,
+    available:98,
+    products:73,
   },
   {
     id: "p10",
@@ -165,13 +218,17 @@ const products: Products[] = [
     country: "Poland",
     stock: 320,
     reservedStock: 25,
-    image:
-      "https://imgs.search.brave.com/c_q_MtUyUQ8khHiXuA14C4AGpmoPfySvzQPww8v37f4/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/dHJ1ZXNpbHZlci5j/by5pbi9jZG4vc2hv/cC9maWxlcy9DSDUw/OTQwUzI0SVNMLTFf/Y29weV82MDB4Lmpw/Zz92PTE3MTc3NDMz/Mzk",
+    image: "https://imgs.search.brave.com/c_q_MtUyUQ8khHiXuA14C4AGpmoPfySvzQPww8v37f4/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/dHJ1ZXNpbHZlci5j/by5pbi9jZG4vc2hv/cC9maWxlcy9DSDUw/OTQwUzI0SVNMLTFf/Y29weV82MDB4Lmpw/Zz92PTE3MTc3NDMz/Mzk",
+    sold: 520,
+    trend: "up",
+    priceRange: "$500-1000",
+    isLowStock: false,
+    available:67,
+    products:75,
   },
 ];
 
 
-// export function dataForchart():chartDatatype{
 //   const products:number[]=[]
 //   const stocks:number[]=[]
 //   const reservedStocks:number[]=[]
@@ -182,6 +239,7 @@ const products: Products[] = [
 // zustand data controller
 
 export const productszu = create<ProductStore>((set, get) => ({
+
   Brand: "",
   category: "",
   search: "",
@@ -268,5 +326,6 @@ export const productszu = create<ProductStore>((set, get) => ({
       reservedStocks,
       stocks
     }
-  }
+  },
+  
 }));

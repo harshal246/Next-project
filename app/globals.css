@@ -1,9 +1,38 @@
 @import "tailwindcss";
+@tailwind utilities;
+@layer utilities {
 
+  .modal-scrollbar {
+    scrollbar-width: thin;                 /* Firefox */
+    scrollbar-color: #8b5cf6 #f1f1f1;       /* thumb track */
+  }
+
+  .modal-scrollbar::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .modal-scrollbar::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+  }
+
+  .modal-scrollbar::-webkit-scrollbar-thumb {
+    background: #8b5cf6;
+    border-radius: 10px;
+  }
+
+  .modal-scrollbar::-webkit-scrollbar-thumb:hover{
+    background: #6d28d9;
+  }
+  .modal-scrollbar::-webkit-scrollbar-button {
+    display: none;
+  }
+}
 @font-face {
   font-family: 'Josefin Sans';
   src: url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;500;700&display=swap');
 }
+
 
 @theme {
   --font-family-sans: 'Josefin Sans', sans-serif;
@@ -17,4 +46,43 @@ body {
   background: linear-gradient(to bottom right, #F3E8FF, #EDE9FE);
   font-family: Arial, Helvetica, sans-serif;
   overflow: hidden;
+  /* margin-bottom: 50px; */
+}
+
+.responsive-modal {
+  background: white;
+  border-radius: 20px;
+  box-shadow: 24px 19px 17px 9px rgba(0, 0, 0, 0.05);
+  border: none;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-height: 90vh;
+  overflow: hidden;
+  width: 60%;
+}
+
+@media (max-width: 900px) {
+  .responsive-modal {
+    width: 80%;
+  }
+}
+
+@media (max-width: 600px) {
+  .responsive-modal {
+    width: 100%;
+    height: 100%;
+    max-height: 100vh;
+    border-radius: 0;
+  }
+}
+
+
+.modal-overlay {
+  background-color: rgba(0,0,0,0.4);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

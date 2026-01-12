@@ -2,11 +2,12 @@
 
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import toast from "react-hot-toast"
 
-const PUBLIC_ROUTES = ["/Login", "/Signup"];
-const HOME_ROUTE = "/"; 
+const authroutes = ["/login", "/signup"];
+const mainroute = "/"; 
 
-export default function AuthGuard({
+export function Checkauthentication({
   children,
 }: {
   children: React.ReactNode;
@@ -16,14 +17,17 @@ export default function AuthGuard({
   const [checking, setChecking] = useState(true);
 
   useEffect(() => {
-    const token = localStorage.getItem("loginData");
-    if (token && PUBLIC_ROUTES.includes(pathname)) {
-      router.replace(HOME_ROUTE);
+    const token = localStorage.getItem("currentUser");
+    if (token && authroutes.includes(pathname)) {
+      toast.success("You are already authenticated")
+      router.replace(mainroute);
       return;
     }
 
-    if (!token && !PUBLIC_ROUTES.includes(pathname)) {
-      router.replace("/Signup");
+    if (!token && !authroutes.includes(pathname)) {
+      toast.error("You need to be logged in first to access pages"
+      )
+      router.replace("/signup");
       return;
     }
 

@@ -89,8 +89,8 @@ export function SIdebar() {
             </MenuItem>
             <MenuItem>
             <LuLogOut size={20} className="w-full" onClick={()=>{
-              localStorage.removeItem("loginData")
-              router.push("/Signup")
+              localStorage.removeItem("currentUser")
+              router.push("/signup")
             }}/>
             </MenuItem>
           </Menu>
@@ -99,20 +99,7 @@ export function SIdebar() {
     </>
   );
 }
-// export function SIdebar() {
-//     const navigate =useNavigate()
-//   const [close, setClosed] = useState(true);
-//   const {pathname}=useLocation()
-//   console.log(pathname)
-//   return (
-//     <div className="h-screen w-[80px] bg-[#c7c4bf] inline-flex">
-//       <Sidebar
-//       className="!bg-[#c7c4bf]"
-//         collapsed={close}
-//         rootStyles={{
-//           backgroundColor: "#c7c4bf",
-//         }}
-//       >
+
 //         <Menu
 //           menuItemStyles={{
 //             button: ({active})=>({
@@ -126,21 +113,3 @@ export function SIdebar() {
 //             }),
 //           }}
 //         >
-//           <MenuItem
-//           active={pathname==="/"} 
-//           onClick={()=>{navigate("/")}}>
-//             <TiHome size={20} className="w-full"/>
-//           </MenuItem>
-//           <MenuItem
-//           active={pathname==="/chart"} 
-//           onClick={()=>{
-//             navigate("/chart")
-//           }}>
-//             <FaRegChartBar size={20} className="w-full" />
-//           </MenuItem>
-//         </Menu>
-        
-//       </Sidebar>
-//     </div>
-//   );
-// }

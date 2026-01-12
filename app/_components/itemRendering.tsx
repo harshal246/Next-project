@@ -9,6 +9,7 @@ import { Drop } from "./Dropdown";
 import { SearchComponent} from "./search";
 import { OpenModal } from "./Modal";
 import { Products, productszu } from "../_store/data";
+import { Trash2, AlertCircle, X,Edit } from 'lucide-react';
 interface Data {
   id?: string;
   name?: string;
@@ -67,7 +68,7 @@ export function ItemRendering() {
                   {itm.name}
                 </div>
                 <div className="flex-1">{itm.mainCategory}</div>
-                <div className="flex-1">{itm.price}$</div>
+                <div className="flex-1">${itm.price}</div>
                 <div className="flex-1 flex justify-center items-center cursor-pointer">
                   {openBar == indx ? (
                     <RiArrowDropDownLine
@@ -140,22 +141,16 @@ export function ItemRendering() {
                         handleChange(e, itm.id);
                       }}
                     ></input>
-                    <button
-                      className="w-full bg-red-600 rounded-2xl h-[35px] cursor-pointer"
-                      type="button"
-                      onClick={() => {
-                        if (itm.id) {
-                          del(itm.id);
-                        } else {
-                          toast.error("Cannot delete: ID missing");
-                        }
-                        setClosebar(undefined);
-                        setchangedData({});
-                        toast.success("Deleted Successfully!!!");
+                    <label htmlFor="ReservedStock">Reserved stock</label>
+                    <input
+                    type="number"
+                      className="w-full h-8 rounded-md mb-5 mt-1 p-2 border-[1px] border-black flex-1"
+                      name="reservedStock"
+                      defaultValue={itm.reservedStock}
+                      onChange={(e) => {
+                        handleChange(e, itm.id);
                       }}
-                    >
-                      Delete
-                    </button>
+                    ></input>
                   </div>
                   <div className="flex-1  p-3">
                     <label htmlFor="name">Country:</label>
@@ -178,22 +173,30 @@ export function ItemRendering() {
                         handleChange(e, itm.id);
                       }}
                     ></input>
-                    <label htmlFor="name">ReservedStock:</label>
-                    <input
-                    type="number"
-                      className="w-full h-8 rounded-md mb-5 mt-1 p-2 border-[1px] border-black flex-1"
-                      name="reservedStock"
-                      defaultValue={itm.reservedStock}
-                      onChange={(e) => {
-                        handleChange(e, itm.id);
+                    {/* was here */}
+                    <button
+                      className="w-full bg-red-600 rounded-2xl h-[35px] mb-5 mt-1 cursor-pointer flex items-center gap-2 bg-violet-100 hover:bg-violet-200 text-violet-600 font-semibold px-6 py-2.5 rounded-lg transition-all duration-300 active:scale-95"
+                      type="button"
+                      onClick={() => {
+                        if (itm.id) {
+                          del(itm.id);
+                        } else {
+                          toast.error("Cannot delete: ID missing");
+                        }
+                        setClosebar(undefined);
+                        setchangedData({});
+                        toast.success("Deleted Successfully!!!");
                       }}
-                    ></input>
+                    >
+                      <Trash2 size={18} /> Delete
+                    </button>
                     {!Object.values(data).every((value) => value === "") && (
                       <button
-                        className="w-full bg-green-300 rounded-2xl h-[35px] cursor-pointer"
+                        className="w-full bg-green-300 rounded-2xl h-[35px] cursor-pointer flex items-center gap-2 bg-violet-100 hover:bg-violet-200 text-violet-600 font-semibold px-6 py-2.5 rounded-lg transition-all duration-300 active:scale-95"
                         type="submit"
                       >
-                        Update Changes
+                        <Edit size={18} />
+                      Modify
                       </button>
                     )}
                   </div>
@@ -204,7 +207,7 @@ export function ItemRendering() {
         })
       ) : (
         <div className="m-auto text-[22px] text-violet-400">
-          !No Data
+          !No data available
         </div>
       )}
     </div>
